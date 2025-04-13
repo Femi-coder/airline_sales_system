@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head><title>Staff Dashboard</title></head>
+<body>
+    <h2>Welcome to Staff Dashboard</h2>
+    <p>Hello {{ user.username }}! You are logged in as staff.</p>
+    <p><a href="{% url 'staff_manage_orders' %}">Manage Orders</a></p>
+</body>
+</html>

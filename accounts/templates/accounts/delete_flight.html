@@ -1,0 +1,17 @@
+<!-- delete_flight.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Flight</title>
+</head>
+<body>
+    <h2>Are you sure you want to delete this flight?</h2>
+    <p><strong>{{ flight.flight_number }}: {{ flight.origin }} to {{ flight.destination }}</strong></p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+        <a href="{% url 'admin_dashboard' %}">Cancel</a>
+    </form>
+</body>
+</html>

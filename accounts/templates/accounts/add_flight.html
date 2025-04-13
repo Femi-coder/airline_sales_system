@@ -1,0 +1,22 @@
+<form method="post">
+    {% csrf_token %}
+    <label>Flight Number:</label>
+    <input type="text" name="flight_number" required><br>
+
+    <label>Origin:</label>
+    <input type="text" name="origin" required><br>
+
+    <label>Destination:</label>
+    <input type="text" name="destination" required><br>
+
+    <label>Departure Time:</label>
+    <input type="datetime-local" name="departure_time" required><br>
+
+    <label>Arrival Time:</label>
+    <input type="datetime-local" name="arrival_time" required><br>
+
+    <label>Available Seats:</label>
+    <input type="number" name="available_seats" required><br>
+
+    <button type="submit">Add Flight</button>
+</form>

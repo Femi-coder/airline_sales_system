@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Orders</title>
+</head>
+<body>
+    <h2>Staff Manage Orders</h2>
+
+    {% if bookings %}
+        <ul>
+            {% for booking in bookings %}
+                <li>
+                    Booking ID: {{ booking.id }} |
+                    User: {{ booking.user.username }} |
+                    Flight: {{ booking.flight.flight_number }} |
+                    Seats: {{ booking.booked_seats }} |
+                    Status: {{ booking.status }}
+                    <a href="{% url 'update_booking_status' booking.id %}">Edit Status</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No bookings yet.</p>
+    {% endif %}
+
+    <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+</body>
+</html>

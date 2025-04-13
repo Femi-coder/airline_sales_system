@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><title>Dashboard</title></head>
+<body>
+    <h2>Welcome back, {{ user.username }}!</h2>
+    <p>Email: {{ user.email }}</p>
+    <p>You are a {{ role }} user.</p>
+
+    {% if role == 'admin' %}
+        <a href="{% url 'admin_dashboard' %}">Admin Dashboard</a>
+    {% elif role == 'staff' %}
+        <a href="{% url 'staff_dashboard' %}">Staff Dashboard</a>
+    {% else %}
+        <a href="{% url 'book_flight' %}">Book a Flight</a>
+    {% endif %}
+
+    <br><br>
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!-- templates/accounts/admin_dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+
+    <p><strong>Total Flights:</strong> {{ total_flights }}</p>
+    <p><strong>Total Bookings:</strong> {{ total_bookings }}</p>
+
+    <a href="{% url 'add_flight' %}">Add New Flight</a>
+
+    <h2>All Flights</h2>
+    {% if flights %}
+        <ul>
+            {% for flight in flights %}
+                <li>
+                    {{ flight.flight_number }}: {{ flight.origin }} to {{ flight.destination }} |
+                    Seats: {{ flight.available_seats }} |
+                    <a href="{% url 'edit_flight' flight.id %}">Edit</a> |
+                    <a href="{% url 'delete_flight' flight.id %}">Delete</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No flights available.</p>
+    {% endif %}
+</body>
+</html>
