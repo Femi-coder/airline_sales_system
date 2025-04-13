@@ -60,12 +60,12 @@ def dashboard_view(request):
 def admin_dashboard_view(request):
     total_flights = Flight.objects.count()
     total_bookings = Booking.objects.count()
-    flights = Flight.objects.all()  # ✅ Make sure this line is here
+    flights = Flight.objects.all() 
 
     return render(request, 'accounts/admin_dashboard.html', {
         'total_flights': total_flights,
         'total_bookings': total_bookings,
-        'flights': flights  # ✅ Make sure this is passed to the template
+        'flights': flights 
     })
 
 
