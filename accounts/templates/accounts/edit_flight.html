@@ -1,0 +1,6 @@
+<h2>Edit Flight</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update Flight</button>
+</form>
