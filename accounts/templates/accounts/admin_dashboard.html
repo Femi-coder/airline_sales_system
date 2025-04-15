@@ -1,31 +1,158 @@
-<!-- templates/accounts/admin_dashboard.html -->
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .dashboard-container {
+            max-width: 950px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .add-flight-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .add-flight-link:hover {
+            background-color: #219150;
+        }
+
+        .flight-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .flight-card {
+            background: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .flight-card img {
+            width: 60px;
+            height: auto;
+            margin-right: 15px;
+        }
+
+        .flight-info {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        .flight-details {
+            line-height: 1.5;
+        }
+
+        .flight-actions a {
+            margin-left: 10px;
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .flight-actions a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-links {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .nav-links a {
+            margin: 0 10px;
+            color: #555;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Admin Dashboard</h1>
+    <header>
+        <h1>Admin Dashboard</h1>
+    </header>
 
-    <p><strong>Total Flights:</strong> {{ total_flights }}</p>
-    <p><strong>Total Bookings:</strong> {{ total_bookings }}</p>
+    <div class="dashboard-container">
+        <div class="stats">
+            <p><strong>Total Flights:</strong> {{ total_flights }}</p>
+            <p><strong>Total Bookings:</strong> {{ total_bookings }}</p>
+        </div>
 
-    <a href="{% url 'add_flight' %}">Add New Flight</a>
+        <a href="{% url 'add_flight' %}" class="add-flight-link">Add New Flight</a>
 
-    <h2>All Flights</h2>
-    {% if flights %}
-        <ul>
-            {% for flight in flights %}
-                <li>
-                    {{ flight.flight_number }}: {{ flight.origin }} to {{ flight.destination }} |
-                    Seats: {{ flight.available_seats }} |
-                    <a href="{% url 'edit_flight' flight.id %}">Edit</a> |
-                    <a href="{% url 'delete_flight' flight.id %}">Delete</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No flights available.</p>
-    {% endif %}
+        <h2>All Flights</h2>
+        {% if flights %}
+            <ul class="flight-list">
+                {% for flight in flights %}
+                    <li class="flight-card">
+                        <div class="flight-info">
+                            <img src="{% static 'accounts/images/plane-icon.png' %}" alt="Flight Icon">
+                            <div class="flight-details">
+                                <strong>{{ flight.flight_number }}</strong>: {{ flight.origin }} to {{ flight.destination }}<br>
+                                Seats: {{ flight.available_seats }}
+                            </div>
+                        </div>
+                        <div class="flight-actions">
+                            <a href="{% url 'edit_flight' flight.id %}">Edit</a>
+                            <a href="{% url 'delete_flight' flight.id %}">Delete</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No flights available.</p>
+        {% endif %}
+
+        <div class="nav-links">
+            <a href="{% url 'dashboard' %}">⬅ Back to Dashboard</a> |
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+    </div>
 </body>
 </html>
