@@ -6,7 +6,7 @@ from .models import Booking
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'role', 'password1', 'password2']  # Include role
+        fields = ['username', 'email', 'role', 'password1', 'password2'] 
 
 class BookingStatusForm(forms.ModelForm):
     class Meta:
