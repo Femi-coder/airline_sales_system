@@ -1,6 +1,23 @@
-<h2>Edit Flight</h2>
-<form method="post">
+<form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
+    <label>Flight Number:</label>
+    <input type="text" name="flight_number" value="{{ flight.flight_number }}" required><br>
+  
+    <label>Origin:</label>
+    <input type="text" name="origin" value="{{ flight.origin }}" required><br>
+  
+    <label>Destination:</label>
+    <input type="text" name="destination" value="{{ flight.destination }}" required><br>
+  
+    <label>Departure Time:</label>
+    <input type="datetime-local" name="departure_time" value="{{ flight.departure_time|date:'Y-m-d\\TH:i' }}" required><br>
+  
+    <label>Arrival Time:</label>
+    <input type="datetime-local" name="arrival_time" value="{{ flight.arrival_time|date:'Y-m-d\\TH:i' }}" required><br>
+  
+    <label>Available Seats:</label>
+    <input type="number" name="available_seats" value="{{ flight.available_seats }}" required><br>
+  
     <button type="submit">Update Flight</button>
-</form>
+  </form>
+  
