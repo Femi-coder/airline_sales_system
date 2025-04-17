@@ -77,6 +77,28 @@
         .nav-links a:hover {
             text-decoration: underline;
         }
+        .status-tag {
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
+.status-tag.pending {
+    background-color: #f8c291;
+    color: #8e4b10;
+}
+
+.status-tag.confirmed {
+    background-color: #b8e994;
+    color: #2d572c;
+}
+
+.status-tag.cancelled {
+    background-color: #ff6b6b;
+    color: #800000;
+}
     </style>
 </head>
 <body>
@@ -94,7 +116,7 @@
                             <strong>User:</strong> {{ booking.user.username }}<br>
                             <strong>Flight:</strong> {{ booking.flight.flight_number }}<br>
                             <strong>Seats:</strong> {{ booking.booked_seats }}<br>
-                            <strong>Status:</strong> {{ booking.status }}
+                           <strong>Status:</strong> <span class="status-tag {{ booking.status }}">{{ booking.status|title }}</span>
                         </div>
                         <div class="booking-actions">
                             <a href="{% url 'update_booking_status' booking.id %}">Edit Status</a>
