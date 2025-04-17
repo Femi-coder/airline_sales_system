@@ -1,28 +1,114 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Manage Orders</title>
+    <meta charset="UTF-8">
+    <title>Staff Manage Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #34495e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+
+        .booking-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .booking-card {
+            background: #fafafa;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 5px solid #2980b9;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .booking-info {
+            line-height: 1.6;
+        }
+
+        .booking-actions a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #2980b9;
+        }
+
+        .booking-actions a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-links {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .nav-links a {
+            color: #555;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h2>Staff Manage Orders</h2>
+    <header>
+        <h1>Staff Manage Orders</h1>
+    </header>
 
-    {% if bookings %}
-        <ul>
-            {% for booking in bookings %}
-                <li>
-                    Booking ID: {{ booking.id }} |
-                    User: {{ booking.user.username }} |
-                    Flight: {{ booking.flight.flight_number }} |
-                    Seats: {{ booking.booked_seats }} |
-                    Status: {{ booking.status }}
-                    <a href="{% url 'update_booking_status' booking.id %}">Edit Status</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No bookings yet.</p>
-    {% endif %}
+    <div class="container">
+        {% if bookings %}
+            <ul class="booking-list">
+                {% for booking in bookings %}
+                    <li class="booking-card">
+                        <div class="booking-info">
+                            <strong>Booking ID:</strong> {{ booking.id }}<br>
+                            <strong>User:</strong> {{ booking.user.username }}<br>
+                            <strong>Flight:</strong> {{ booking.flight.flight_number }}<br>
+                            <strong>Seats:</strong> {{ booking.booked_seats }}<br>
+                            <strong>Status:</strong> {{ booking.status }}
+                        </div>
+                        <div class="booking-actions">
+                            <a href="{% url 'update_booking_status' booking.id %}">Edit Status</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No bookings yet.</p>
+        {% endif %}
 
-    <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+        <div class="nav-links">
+            <a href="{% url 'dashboard' %}">⬅ Back to Dashboard</a>
+        </div>
+    </div>
 </body>
 </html>

@@ -149,8 +149,6 @@
             <p>No flights available.</p>
         {% endif %}
 
-        <div class="nav-links">
-            <a href="{% url 'dashboard' %}">⬅ Back to Dashboard</a> |
             <form method="POST" action="{% url 'logout' %}" style="display:inline;">
                 {% csrf_token %}
                 <button type="submit" style="background:none; border:none; color:#3498db; font-weight:bold; cursor:pointer;">Logout</button>

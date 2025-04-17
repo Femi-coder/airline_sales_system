@@ -15,6 +15,9 @@
     {% endif %}
 
     <br><br>
-    <a href="{% url 'logout' %}">Logout</a>
+    <form method="POST" action="{% url 'logout' %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" style="background:none; border:none; color:#3498db; font-weight:bold; cursor:pointer;">Logout</button>
+    </form>
 </body>
 </html>
