@@ -68,6 +68,17 @@
             margin-top: 25px;
         }
 
+        .success {
+        color: green;
+        font-weight: bold;
+        margin-bottom: 20px;
+        background-color: #e2fbe2;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #b5e0b5;
+
+        }
+
         .back-link a {
             text-decoration: none;
             color: #555;
@@ -86,6 +97,10 @@
     {% if error %}
         <p class="error">{{ error }}</p>
     {% endif %}
+
+    {% if success %}
+    <p class="success">Flight booked successfully!</p>
+{% endif %}
 
     <form method="post">
         {% csrf_token %}

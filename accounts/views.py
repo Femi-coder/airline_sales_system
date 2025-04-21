@@ -189,7 +189,7 @@ def delete_flight_view(request, flight_id):
 def customer_booking_view(request):
     flights = Flight.objects.all()
     error = None
-
+    success = False
     if request.method == 'POST':
         flight_id = request.POST.get('flight_id')
         booked_seats = int(request.POST.get('booked_seats'))
@@ -199,7 +199,7 @@ def customer_booking_view(request):
                 Booking.objects.create(user=request.user, flight=flight, booked_seats=booked_seats)
                 flight.available_seats -= booked_seats
                 flight.save()
-                return redirect('dashboard')
+                success = True 
             else:
                 error = "Not enough seats available"
         except Flight.DoesNotExist:
@@ -207,5 +207,6 @@ def customer_booking_view(request):
 
     return render(request, 'accounts/customer_booking.html', {
         'flights': flights,
-        'error': error
+        'error': error,
+        'success': success
     })
