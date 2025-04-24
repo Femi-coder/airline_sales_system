@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-*q5p($l&#%$wjt#_i-&nur4^femi(!-z88b-^o4=#9=yot-a4r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['airline-sales-system.onrender.com', 'www.airline-sales-system.onrender.com']
+ALLOWED_HOSTS = ['airline-sales-system.onrender.com', 'www.airline-sales-system.onrender.com','127.0.0.1', 'localhost',]
 
 
 
