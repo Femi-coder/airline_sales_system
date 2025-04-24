@@ -52,3 +52,4 @@ zope.event==5.0
 zope.interface==7.2
 gunicorn
 whitenoise
+dj_database_url
